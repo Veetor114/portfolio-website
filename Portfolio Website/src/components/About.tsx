@@ -4,7 +4,7 @@ import { Badge } from "./ui/badge";
 export function About() {
   const tools = [
     "Figma", "React", "Next.js", "TypeScript", 
-    "Tailwind CSS", "Adobe Creative Suite", "Framer", "Node.js, Express.js, Supabase, PostgreSQL, Redis, Prisma, REST/GraphQL APIs", "OpenAI GPT, Vapi AI, highlevel"
+    "Tailwind CSS", "Adobe Creative Suite", "Framer", "Supabase","notion"
   ];
 
   return (
@@ -30,8 +30,7 @@ export function About() {
           >
             <h3 className="mb-6 text-green-700 dark:text-green-400">My name is victor and i am Problem Solver at Heart</h3>
             <p className="mb-6 text-gray-600 dark:text-gray-300">
-              I am a passionate UI/UX-driven web Developer with hands-on experience creating interactive, scalable apps using React, Next.js, Node.js, and modern design systems.
-My focus is on building intelligent, automated experiences, integrating AI workflows, voice agents, and automation tools that make products more human-centered.
+              I am passionate about creating digital experiences that make people's lives easier. With good years of experience in design and development, I bridge the gap between beautiful aesthetics and functional code.
             </p>
             <p className="mb-6 text-gray-600 dark:text-gray-300">
               My approach combines user centered design thinking with modern development practices. 
