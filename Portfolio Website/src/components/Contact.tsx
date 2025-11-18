@@ -6,7 +6,6 @@ import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { Mail, Linkedin, Github, Download, MapPin, Phone } from "lucide-react";
 import { useState } from "react";
-import { projectId, publicAnonKey } from "../utils/supabase/info";
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,32 +32,31 @@ export function Contact() {
     }
 
     try {
-      const response = await fetch(`https://${projectId}.supabase.co/functions/v1/make-server-810ba79e/contact`, {
+      const MAKE_WEBHOOK_URL = "YOUR_MAKE_WEBHOOK_URL_HERE"; // <-- Replace with your Make webhook
+
+      const response = await fetch(MAKE_WEBHOOK_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${publicAnonKey}`,
         },
         body: JSON.stringify({
           name,
           email,
-          message: `Subject: ${subject}\n\n${message}`,
+          subject,
+          message
         }),
       });
-
-      const result = await response.json();
 
       if (response.ok) {
         setSubmitStatus("Message sent successfully! I'll get back to you soon.");
         (e.target as HTMLFormElement).reset();
       } else {
-        console.error('Contact form error:', result);
-        console.error('Error details:', result.details);
-        setSubmitStatus(result.error || 'Failed to send message. Please try again.');
+        const errorData = await response.json();
+        console.error('Webhook error:', errorData);
+        setSubmitStatus('Failed to send message. Please try again.');
       }
     } catch (error) {
       console.error('Contact form error:', error);
-      console.error('Error details:', error instanceof Error ? error.message : String(error));
       setSubmitStatus('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -67,33 +65,7 @@ export function Contact() {
 
   const handleDownloadCV = async () => {
     const CV_URL = "https://eu.docworkspace.com/d/sIBnstND1AdL-9sYG?sa=601.1037";
-    
-    try {
-      // Try backend proxy first
-      const response = await fetch(`https://${projectId}.supabase.co/functions/v1/make-server-810ba79e/download-cv`, {
-        headers: {
-          'Authorization': `Bearer ${publicAnonKey}`
-        }
-      });
-      
-      if (response.ok) {
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.style.display = 'none';
-        link.href = url;
-        link.download = 'Victor_Ikpebagha_CV.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-        return;
-      }
-    } catch (error) {
-      console.error('Backend download failed:', error);
-    }
-    
-    // Fallback: direct download
+
     try {
       const link = document.createElement('a');
       link.style.display = 'none';
@@ -105,43 +77,19 @@ export function Contact() {
       document.body.removeChild(link);
     } catch (error) {
       console.error('Direct download failed:', error);
-      // Final fallback - open in new tab
       window.open(CV_URL, '_blank');
     }
   };
 
   const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "ikpebaghaveetor@gmail.com",
-      href: "mailto:ikpebaghaveetor@gmail.com"
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+2348102461703",
-      href: "tel:+2348102461703"
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Lagos, Nigeria",
-      href: null
-    }
+    { icon: Mail, label: "Email", value: "ikpebaghaveetor@gmail.com", href: "mailto:ikpebaghaveetor@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+2348102461703", href: "tel:+2348102461703" },
+    { icon: MapPin, label: "Location", value: "Lagos, Nigeria", href: null }
   ];
 
   const socialLinks = [
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/victor-ikpebagha-21309926b/"
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      href: "https://github.com/Veetor114"
-    }
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/victor-ikpebagha-21309926b/" },
+    { icon: Github, label: "GitHub", href: "https://github.com/Veetor114" }
   ];
 
   return (
