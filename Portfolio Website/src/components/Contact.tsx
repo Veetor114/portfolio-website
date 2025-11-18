@@ -11,7 +11,7 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<string | null>(null);
 
-  const MAKE_WEBHOOK_URL = "YOUR_MAKE_WEBHOOK_URL_HERE"; // <-- Replace with your Make.com webhook URL
+  const MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/q6ttcnp4pb0zi5cox0i2h6um457882v3"; // <-- Replace with your Make.com webhook URL
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
