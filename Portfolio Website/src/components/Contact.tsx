@@ -32,7 +32,7 @@ export function Contact() {
     }
 
     try {
-      const MAKE_WEBHOOK_URL = "YOUR_MAKE_WEBHOOK_URL_HERE"; // <-- Replace with your Make webhook
+      const MAKE_WEBHOOK_URL = "bie6hu3dfisleamllrpxlw0g8q20l96x@hook.eu2.make.com"; // <-- Replace with your Make webhook
 
       const response = await fetch(MAKE_WEBHOOK_URL, {
         method: 'POST',
