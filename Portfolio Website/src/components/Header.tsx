@@ -49,7 +49,7 @@ export function Header() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mb-6 text-green-700 dark:text-green-400"
           >
-            UI/UX Designer & Web Developer
+            UI/UX Designer & Fronend Developer
           </motion.h2>
           
           <motion.p
@@ -58,8 +58,7 @@ export function Header() {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="mb-8 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
           >
-            A Full-Stack Web Developer & UI/UX Designer building modern digital experiences powered by AI automation.
-I design, build, and optimize responsive web apps that feel human, merging creativity, code, and intelligence..
+            I create beautiful, functional digital experiences that solve real problems. From user research to pixel-perfect interfaces and seamless code implementation.
           </motion.p>
           
           <motion.div
