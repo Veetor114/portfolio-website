@@ -4,7 +4,7 @@ import { Badge } from "./ui/badge";
 export function About() {
   const tools = [
     "Figma", "React", "Next.js", "TypeScript", 
-    "Tailwind CSS", "Adobe Creative Suite", "Framer", "Supabase","notion"
+    "Tailwind CSS", "Adobe Creative Suite", "Framer", "Supabase","notion",
   ];
 
   return (
